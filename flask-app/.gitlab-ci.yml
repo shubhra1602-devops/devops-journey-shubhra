@@ -11,8 +11,8 @@ build:
  services:
     - docker:dind
  script:
-  - echo "Building Docker image..."
-  - docker build -t $IMAGE_NAME .
+  - echo "Building Docker image from flask-app/Dockerfile......"
+  - docker build -f flask-app/Dockerfile -t $IMAGE_NAME flask-app
   - docker images
 
 test:
@@ -20,6 +20,7 @@ test:
  image: python:3.10-slim
  script:
   - echo "Testing Flask app..."
-  - pip install -r requirements.txt
-  - python -m unittest discover || echo "No tests yet - skipping" 
-
+  # install from the requirements file inside flask-app directory
+  - pip install -r flask-app/requirements.txt
+  # run unit tests that live in flask-app (adjust if your tests are elsewhere)
+  - python -m unittest discover flask-app || echo "No tests yet - skipping"
