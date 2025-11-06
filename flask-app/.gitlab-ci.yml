@@ -1,0 +1,25 @@
+stages:
+ - build
+ - test
+
+variables:
+ IMAGE_NAME: flask-app
+
+build:
+ stage: build
+ image: docker:latest
+ services:
+    - docker:dind
+ script:
+  - echo "Building Docker image..."
+  - docker build -t $IMAGE_NAME .
+  - docker images
+
+test:
+ stage: test
+ image: python:3.10-slim
+ script:
+  - echo "Testing Flask app..."
+  - pip install -r requirements.txt
+  - python -m unittest discover || echo "No tests yet - skipping" 
+

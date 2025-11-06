@@ -83,3 +83,37 @@ pip install -r requirements.txt
 | Horizontal line | `---` | --- |
 
 <hr style="border: 2px solid #d1c1c1ff; margin: 40px 0;">
+
+# Docker File
+
+### Step 1 — Create Your Dockerfile
+
+### Step 2 — Build Your Docker Image
+`docker build -t flask-app-shubhra .`
+
+**-t flask-app-shubhra** gives your image a name (tag)
+**.** means "use the current directory"
+
+### Step 3 — Verify Your Image
+`docker images`
+
+### Step 4 — Run Your Flask App Inside a Container
+`docker run -d -p 5000:5000 flask-app-shubhra`
+
+**-d** = Detached mode (runs in background)
+**-p 5000:5000** = Maps your system’s port 5000 → container’s port 5000
+
+### Step 5 — Test It!
+Now open your browser and visit:
+👉 http://127.0.0.1:5000
+You should see:
+Hello, Shubhra! Welcome to your first Flask App 🚀
+
+### Step 6 — Verify and Stop the Container
+**List running containers:**
+`docker ps`
+
+**Stop it:**
+`docker stop <container_id>`
+
+<hr style="border: 2px solid #d1c1c1ff; margin: 40px 0;">
